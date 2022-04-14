@@ -12,19 +12,19 @@ public class Test {
 
     private int[] quickSortOper(int[] arr, int left, int right) {
         if (left < right) {
-            int partitionIndex = partition(arr, left, right);
+            int partitionIndex = partiton(arr, left, right);
             quickSortOper(arr, left, partitionIndex - 1);
             quickSortOper(arr, partitionIndex + 1, right);
         }
         return arr;
     }
 
-    private int partition(int[] arr, int left, int right) {
+    private int partiton(int[] arr, int left, int right) {
         int pivot = left;
         int index = pivot + 1;
         for (int i = index; i <= right; i++) {
             if (arr[pivot] > arr[i]) {
-                swap(arr, i, index);
+                swap(arr, index, i);
                 index++;
             }
         }
@@ -68,6 +68,7 @@ public class Test {
     public int[] heapSort(int[] targetArr) {
         int[] arr = Arrays.copyOf(targetArr, targetArr.length);
         int len = arr.length;
+
         buildMaxHeap(arr, len);
         for (int i = len - 1; i > 0; i--) {
             swap(arr, 0, i);
@@ -103,6 +104,9 @@ public class Test {
         int temp = arr[i];
         arr[i] = arr[j];
         arr[j] = temp;
+//        arr[i] = arr[i] + arr[j];
+//        arr[j] = arr[i] - arr[j];
+//        arr[i] = arr[i] - arr[j];
 //        arr[i] = arr[i] ^ arr[j];
 //        arr[j] = arr[i] ^ arr[j];
 //        arr[i] = arr[i] ^ arr[j];
