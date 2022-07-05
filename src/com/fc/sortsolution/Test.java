@@ -1,8 +1,6 @@
 package com.fc.sortsolution;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class Test {
     public int[] quickSort(int[] targetArr) {
@@ -11,15 +9,15 @@ public class Test {
     }
 
     private int[] quickSortOper(int[] arr, int left, int right) {
-        if(left < right) {
-            int partitonIndex = partiton(arr, left, right);
-            quickSortOper(arr, left, partitonIndex - 1);
-            quickSortOper(arr, partitonIndex + 1, right);
+        if (left < right) {
+            int partitionIndex = partition(arr, left, right);
+            quickSortOper(arr, left, partitionIndex - 1);
+            quickSortOper(arr, partitionIndex + 1, right);
         }
         return arr;
     }
 
-    private int partiton(int[] arr, int left, int right) {
+    private int partition(int[] arr, int left, int right) {
         int pivot = left;
         int index = pivot + 1;
         for (int i = index; i <= right; i++) {
@@ -33,10 +31,9 @@ public class Test {
     }
 
     public int[] mergeSort(int[] arr) {
-        if (arr.length < 2) {
+        if (arr.length  < 2) {
             return arr;
         }
-
         int middle = (int) Math.floor(arr.length / 2);
         int[] left = Arrays.copyOfRange(arr, 0, middle);
         int[] right = Arrays.copyOfRange(arr, middle, arr.length);
@@ -65,14 +62,13 @@ public class Test {
         }
         return result;
     }
-
+    
     public int[] heapSort(int[] targetArr) {
         int[] arr = Arrays.copyOf(targetArr, targetArr.length);
         int len = arr.length;
-
         buildMaxHeap(arr, len);
         for (int i = len - 1; i > 0; i--) {
-            swap(arr, i, 0);
+            swap(arr, 0, i);
             len--;
             heapify(arr, 0, len);
         }
@@ -92,11 +88,12 @@ public class Test {
         if (left < len && arr[left] > arr[largest]) {
             largest = left;
         }
+
         if (right < len && arr[right] > arr[largest]) {
             largest = right;
         }
         if (largest != i) {
-            swap(arr, largest, i);
+            swap(arr, i, largest);
             heapify(arr, largest, len);
         }
     }
@@ -136,19 +133,19 @@ public class Test {
 
         System.out.println("");
 
-        List<String> list = new ArrayList<>();
-        list.add("1");
-        list.add("2");
-        list.add("3");
-        list.add("4");
-        list.add("5");
-        list.add("6");
-        for (int i = 0; i < list.size(); i++) {
-            if (list.get(i) == "2") {
-                list.remove("2");
-            }
-            System.out.println(list.get(i));
-        }
+//        List<String> list = new ArrayList<>();
+//        list.add("1");
+//        list.add("2");
+//        list.add("3");
+//        list.add("4");
+//        list.add("5");
+//        list.add("6");
+//        for (int i = 0; i < list.size(); i++) {
+//            if (list.get(i) == "2") {
+//                list.remove("2");
+//            }
+//            System.out.println(list.get(i));
+//        }
 
     }
 
