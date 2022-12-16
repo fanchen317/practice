@@ -54,6 +54,6 @@ public class Ac {
             System.out.println(student.getName() + " " + student.getScore());
         }
 
-
+        System.out.println("测试");
     }
 }
