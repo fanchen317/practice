@@ -1,10 +1,7 @@
 package com.fc.sortsolution;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
-import java.util.Map;
 
-import static java.util.Arrays.copyOfRange;
 
 public class Test {
     private void swap(int[] arr, int i, int j) {
@@ -63,7 +60,7 @@ public class Test {
         int len = arr.length;
         buildMaxHeap(arr, len);
         for (int i = len - 1; i > 0; i--) {
-            swap(arr, i, 0);
+            swap(arr, 0, i);
             len--;
             heapify(arr, 0, len);
         }
@@ -92,13 +89,13 @@ public class Test {
         }
     }
 
-    private int[] mergeSort(int[] arr) {
-        if (arr.length < 2) {
-            return arr;
+    private int[] mergeSort(int[] targetArr) {
+        if (targetArr.length < 2) {
+            return targetArr;
         }
-        int middle = (int) Math.floor(arr.length / 2);
-        int[] left = Arrays.copyOfRange(arr, 0, middle);
-        int[] right = Arrays.copyOfRange(arr, middle, arr.length);
+        int middle = (int) Math.floor(targetArr.length / 2);
+        int[] left = Arrays.copyOfRange(targetArr, 0, middle);
+        int[] right = Arrays.copyOfRange(targetArr, middle, targetArr.length);
         return merge(mergeSort(left), mergeSort(right));
     }
 
@@ -123,14 +120,11 @@ public class Test {
             right = Arrays.copyOfRange(right, 1, right.length);
         }
         return result;
-
     }
 
     private int[] quickSort(int[] targetArr) {
         int[] arr = Arrays.copyOf(targetArr, targetArr.length);
-
         return quickSortOper(arr, 0, arr.length - 1);
-
     }
 
     private int[] quickSortOper(int[] arr, int left, int right) {
@@ -147,7 +141,7 @@ public class Test {
         int index = pivot + 1;
         for (int i = index; i <= right; i++) {
             if (arr[pivot] > arr[i]) {
-                swap(arr, i, index);
+                swap(arr, index, i);
                 index++;
             }
         }
